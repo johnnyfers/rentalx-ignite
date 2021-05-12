@@ -7,9 +7,8 @@ class CreateSpecificationController {
 
     handle(req: Request, res: Response): Response {
         const { name, description } = req.body;
-        const createSpecificationUseCase = new CreateSpecificationUseCase(specificationRepository)
 
-        createSpecificationUseCase.execute({ name, description });
+        this.createSpecificationUseCase.execute({ name, description });
 
         return res.status(201).send();
     }
