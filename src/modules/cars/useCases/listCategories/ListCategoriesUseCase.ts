@@ -5,7 +5,7 @@ import { CategoriesRepository } from "../../repositories/implementations/Categor
 class ListCategoriesUseCase{
     constructor(private categoriesRepository: CategoriesRepository) { }
 
-    execute(): Category[] {
+    execute():  Promise<void> {
         const categories = this.categoriesRepository.list();
 
         return categories

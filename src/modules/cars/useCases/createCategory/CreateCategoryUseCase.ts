@@ -1,5 +1,4 @@
 import { CategoriesRepository } from '../../repositories/implementations/CategoriesRepository';
-//const categoriesRepository = new CategoriesRepository()
 
 interface IRequest {
     name: string;
@@ -10,8 +9,8 @@ class CreateCategoryUseCase {
 
     constructor(private categoriesRepository: CategoriesRepository) { }
 
-    execute({ name, description }: IRequest): void {
-        const existing = this.categoriesRepository.findByName(name)
+    async execute({ name, description }: IRequest): Promise<void> {
+        const existing = await this.categoriesRepository.findByName(name)
 
         if (existing) throw new Error('category already exists')
 
