@@ -18,7 +18,7 @@ class CategoriesRepository implements ICreateCategoryRepository {
         await this.repository.save(category)
     }
 
-    async list(): Promise<void> {
+    async list(): Promise<Category[]> {
         const categories = await this.repository.find();
 
         return categories

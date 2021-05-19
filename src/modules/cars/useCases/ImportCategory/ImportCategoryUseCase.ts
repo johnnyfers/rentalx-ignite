@@ -1,17 +1,22 @@
 import csvParse from 'csv-parse';
 import fs from 'fs';
-import { ICreateCategoryRepository} from '../../repositories/ICategoryRepository';
+import { ICreateCategoryRepository } from '../../repositories/ICategoryRepository';
+import { inject, injectable } from 'tsyringe';
 
-interface IImportCategory { 
+interface IImportCategory {
     name: string;
     description: string;
 }
 
-class ImportCategoryUseCase{
-    constructor(private categoriesRepository: ICreateCategoryRepository){}
+@injectable()
+class ImportCategoryUseCase {
+    constructor(
+        @inject('CategoriesRepository')
+        private categoriesRepository: ICreateCategoryRepository
+    ) { }
 
-    loadCategories(file: Express.Multer.File): Promise<IImportCategory[]>{
-        return new Promise((resolve, reject) =>{
+    loadCategories(file: Express.Multer.File): Promise<IImportCategory[]> {
+        return new Promise((resolve, reject) => {
             const stream = fs.createReadStream(file.path);
             const categories: IImportCategory[] = [];
 
@@ -19,34 +24,34 @@ class ImportCategoryUseCase{
 
             stream.pipe(parseFile);
 
-            parseFile.on('data', async (line)=>{ 
+            parseFile.on('data', async (line) => {
                 const [name, description] = line;
                 categories.push({
-                    name, 
+                    name,
                     description
                 })
             })
-            .on('end', ()=>{ 
-                fs.promises.unlink(file.path)
-                resolve(categories)
-            })
-            .on('error', (err)=>{ 
-                reject(err)
-            })
+                .on('end', () => {
+                    fs.promises.unlink(file.path)
+                    resolve(categories)
+                })
+                .on('error', (err) => {
+                    reject(err)
+                })
         })
     }
 
-    async execute(file: Express.Multer.File) : Promise<void>{
+    async execute(file: Express.Multer.File): Promise<void> {
         const categories = await this.loadCategories(file);
         console.log(categories)
 
-        categories.map( async(category)=>{ 
+        categories.map(async (category) => {
             const { name, description } = category
 
             const existCategories = await this.categoriesRepository.findByName(name)
 
-            if(!existCategories){
-                this.categoriesRepository.create({ 
+            if (!existCategories) {
+                await this.categoriesRepository.create({
                     name,
                     description
                 })
