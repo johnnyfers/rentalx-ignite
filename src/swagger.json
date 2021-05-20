@@ -8,16 +8,18 @@
     "paths": {
         "/categories": {
             "post": {
-                "tags": ["categories"],
+                "tags": [
+                    "categories"
+                ],
                 "summary": "Create category",
                 "description": "Create a new category",
                 "requestBody": {
                     "content": {
-                        "application/json":{
+                        "application/json": {
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "name":{
+                                    "name": {
                                         "type": "string"
                                     },
                                     "description": {
@@ -33,36 +35,79 @@
                     }
                 },
                 "responses": {
-                    "201":{
+                    "201": {
                         "description": "Create"
                     },
-                    "500":{
+                    "500": {
                         "description": "Category Already Exists"
                     }
                 }
             },
             "get": {
-                "tags": ["categories"],
+                "tags": [
+                    "categories"
+                ],
                 "summary": "List all categories",
                 "description": "List all categories",
                 "responses": {
                     "200": {
                         "description": "success",
-                        "content":{
-                            "application/json":{
+                        "content": {
+                            "application/json": {
                                 "schema": {
                                     "type": "array",
                                     "properties": {
                                         "name": {
                                             "type": "string"
                                         },
-                                        "description":{
+                                        "description": {
                                             "type": "string"
                                         }
                                     }
                                 }
                             }
                         }
+                    }
+                }
+            }
+        },
+        "/specifications": {
+            "post": {
+                "tags": [
+                    "Specification"
+                ],
+                "summary": "Create a specification",
+                "description": "Creates a new specification",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Specifications"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "500": {
+                        "description": "Specification already exists"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Specifications": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "name": {
+                        "type": "string"
                     }
                 }
             }
