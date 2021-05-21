@@ -2,6 +2,7 @@ import { inject, injectable } from 'tsyringe'
 import { ICreateUserDTO } from '../../dtos/ICreateUserDTO'
 import { IUserRepository } from '../../repositories/IUserRepository'
 
+@injectable()
 class CreateUserUseCase {
     constructor(
         @inject('UserRepository')
