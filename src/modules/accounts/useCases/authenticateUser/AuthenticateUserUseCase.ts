@@ -51,7 +51,6 @@ class AuthenticateUserUseCase{
         }
 
         return tokenReturn
-
     }
 }
 
