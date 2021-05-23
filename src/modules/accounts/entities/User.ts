@@ -1,6 +1,6 @@
 import { v4 as uuidV4} from 'uuid'
 
-import { Column, Entity, CreateDateColumn, PrimaryColumn } from 'typeorm'
+import { Column, Entity, CreateDateColumn, PrimaryColumn, Column } from 'typeorm'
 
 @Entity('users')
 class User{
@@ -25,6 +25,9 @@ class User{
 
     @Column()
     isAdmin:boolean
+
+    @Column()
+    avatar: string
 
     @CreateDateColumn()
     created_at: Date
