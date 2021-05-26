@@ -1,5 +1,5 @@
-import { Category } from "../../entities/Category";
-import { ICreateCategoryDTO, ICreateCategoryRepository } from "../ICategoryRepository";
+import { Category } from "../entities/Category";
+import { ICreateCategoryDTO, ICreateCategoryRepository } from "../../../repositories/ICategoryRepository";
 import { getRepository, Repository } from "typeorm";
 
 class CategoriesRepository implements ICreateCategoryRepository {
