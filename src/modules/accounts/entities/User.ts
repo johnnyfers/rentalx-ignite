@@ -1,6 +1,6 @@
 import { v4 as uuidV4} from 'uuid'
 
-import { Column, Entity, CreateDateColumn, PrimaryColumn, Column } from 'typeorm'
+import {Entity, CreateDateColumn, PrimaryColumn, Column } from 'typeorm'
 
 @Entity('users')
 class User{
