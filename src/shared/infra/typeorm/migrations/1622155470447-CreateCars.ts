@@ -34,6 +34,10 @@ export class CreateCars1622155470447 implements MigrationInterface {
                         type: 'varchar'
                     },
                     {
+                        name: 'fine_amount',
+                        type: 'numeric'
+                    },
+                    {
                         name: 'brand',
                         type: 'varchar'
                     },
