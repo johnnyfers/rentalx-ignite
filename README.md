@@ -17,11 +17,9 @@ RF002 - Deve ser possível listar todas as categorias
 
 RN001 - Não deve ser possível cadastrar um carro com placa existente
 
-RN002 - Não deve ser possível alterar a placa de um carro já cadastrado
+RN002 - O carro deve ser cadastrado com disponibilidade por padrão
 
-RN003 - O carro deve ser cadastrado com disponibilidade por padrão
-
-RN004 - O usuário responsável pelo cadastro deve ser um usuário administrador 
+RN003 - O usuário responsável pelo cadastro deve ser um usuário administrador 
 
 
 # Listagem de carros

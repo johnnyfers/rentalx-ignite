@@ -1,3 +1,4 @@
+import { v4 as uuidV4} from 'uuid'
 
 class Car{
     
@@ -14,7 +15,7 @@ class Car{
     daily_rate: string;
     
     
-    available: string;
+    available: boolean;
     
     
     license_plate: string;
@@ -28,6 +29,13 @@ class Car{
     
     category_id: string
 
+    constructor(){
+        if(!this.id){
+            this.id = uuidV4()
+            this.available = true
+            this.created_at = new Date()
+        }
+    }
 }
 
 export {Car}
