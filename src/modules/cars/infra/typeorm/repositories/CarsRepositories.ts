@@ -11,25 +11,15 @@ class CarsRepository implements ICarsRepository {
         this.repository = getRepository(Car)
     }
 
-    async create(data: ICreateCarDTO): Promise<Car> {
-        const car = this.repository.create({
-            name: data.name,
-                description: data.description,
-                brand: data.brand,
-                category_id: data.category_id,
-                license_plate: data.license_plate,
-                fine_amount: data.fine_amount,
-                daily_rate: data.daily_rate
-            })
-
-        await this.repository.save(car)
-
+    async create({ name, description, daily_rate, category_id, brand, fine_amount, license_plate }: ICreateCarDTO): Promise<Car> {
+        const car = this.repository.create({ name, description, category_id, brand, license_plate, daily_rate, fine_amount})
+    
         return car
     }
     async findByLicensePlate(license_plate: string): Promise<Car> {
         const car = this.repository.findOne({license_plate})
-        return car
         
+        return car
     }
 }
 
