@@ -18,13 +18,13 @@ class User{
     password: string
 
     @Column()
+    isAdmin: boolean
+
+    @Column()
     email: string
     
     @Column()
     driver_license:string
-
-    @Column()
-    isAdmin:boolean
 
     @Column()
     avatar: string
