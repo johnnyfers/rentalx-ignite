@@ -4,8 +4,8 @@ import { ICarsRepository } from "../../repositories/ICarsRepository";
 
 interface IRequest {
     category_id?: string;
-    brand?: string;
     name?: string;
+    brand?: string;
 }
 
 @injectable()
@@ -15,8 +15,8 @@ class ListCarsUseCase {
         private carsRepository: ICarsRepository
     ){}
 
-    async execute({category_id, brand, name }:IRequest): Promise<Car[]> {
-        const cars = await this.carsRepository.findAvailable(category_id, brand, name)
+    async execute({category_id, name, brand }:IRequest): Promise<Car[]> {
+        const cars = await this.carsRepository.findAvailable(category_id, name, brand)
         
         return cars
     }

@@ -33,13 +33,14 @@ class CarsRepository implements ICarsRepository {
             carsQuery.andWhere("category_id = :category_id", { category_id })
         }
 
+        if (name) {
+            carsQuery.andWhere("name = :name", { name })
+        }
+
         if (brand) {
             carsQuery.andWhere("brand = :brand", { brand })
         }
 
-        if (name) {
-            carsQuery.andWhere("name = :name", { name })
-        }
 
         const cars = await carsQuery.getMany()
 
