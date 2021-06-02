@@ -10,7 +10,7 @@ class SpecificationRepository implements ICreateSpecificationRepository {
         this.Repository = getRepository(Specification)
     }
 
-    async create({ name, description }: ICreateSpecificationDTO): Promise<void> {
+    async create({ name, description }: ICreateSpecificationDTO): Promise<Specification> {
         const specification = this.Repository.create(
             {
                 name,
@@ -19,10 +19,18 @@ class SpecificationRepository implements ICreateSpecificationRepository {
         )
 
         await this.Repository.save(specification)
+
+        return specification
     }
 
     async findByName(name: string): Promise<Specification> {
         const specification = await this.Repository.findOne({name})
+
+        return specification
+    }
+
+    async findByIds(ids: string[]): Promise<Specification[]> {
+        const specification = await this.Repository.findByIds(ids)
 
         return specification
     }

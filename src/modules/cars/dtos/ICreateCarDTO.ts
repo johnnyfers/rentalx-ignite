@@ -8,7 +8,8 @@ interface ICreateCarDTO{
     brand: string;
     fine_amount: number;
     category_id: string;
-    specification?: Specification[]
+    specifications?: Specification[]
+    id?: string;
 }
 
 export { ICreateCarDTO }
