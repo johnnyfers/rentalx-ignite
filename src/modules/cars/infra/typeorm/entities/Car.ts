@@ -1,46 +1,55 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
-import { v4 as uuidV4} from 'uuid'
+import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryColumn } from 'typeorm';
+import { v4 as uuidV4 } from 'uuid'
 import { Category } from './Category';
+import { Specification } from './Specification';
 
 @Entity('cars')
-class Car{
-    
+class Car {
+
     @PrimaryColumn()
     id: string
-    
+
     @Column()
     name: string;
-    
+
     @Column()
     description: string;
-    
+
     @Column()
     daily_rate: number;
-    
+
     @Column()
     available: boolean;
-    
+
     @Column()
     license_plate: string;
 
     @Column()
     fine_amount: number;
-    
+
     @Column()
     brand: string;
-    
+
     @CreateDateColumn()
     created_at: Date
 
-    @ManyToOne(()=> Category)
-    @JoinColumn({name: 'category_id'})
+    @ManyToOne(() => Category)
+    @JoinColumn({ name: 'category_id' })
     category: Category
-    
+
     @Column()
     category_id: string
 
-    constructor(){
-        if(!this.id){
+    @ManyToMany(() => Specification)
+    @JoinTable({
+        name: 'specifications_cars',
+        joinColumns: [{ name: "car_id" }],
+        inverseJoinColumns: [{ name: "specifications_id" }]
+    })
+    specifications: Specification[]
+
+    constructor() {
+        if (!this.id) {
             this.id = uuidV4()
             this.created_at = new Date()
             this.available = true;
@@ -48,4 +57,4 @@ class Car{
     }
 }
 
-export {Car}
+export { Car }
