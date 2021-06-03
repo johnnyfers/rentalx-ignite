@@ -10,6 +10,8 @@ import { SpecificationRepository } from '../../modules/cars/infra/typeorm/reposi
 import { ICreateSpecificationRepository } from '../../modules/cars/repositories/ISpecificationRepository';
 import { ICarsRepository } from '../../modules/cars/repositories/ICarsRepository';
 import { CarsRepository } from '../../modules/cars/infra/typeorm/repositories/CarsRepositories';
+import { ICarsImageRepository } from '../../modules/cars/repositories/ICarsImageRepository';
+import { CarsImageRepository } from '../../modules/cars/infra/typeorm/repositories/CarsImageRepository';
 
 container.registerSingleton<ICreateCategoryRepository>(
     'CategoriesRepository',
@@ -29,4 +31,10 @@ container.registerSingleton<IUserRepository>(
 container.registerSingleton<ICarsRepository>(
     'CarsRepository',
     CarsRepository
+)
+
+
+container.registerSingleton<ICarsImageRepository>(
+    'CarsImageRepository',
+    CarsImageRepository
 )
