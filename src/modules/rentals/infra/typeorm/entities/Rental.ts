@@ -13,7 +13,8 @@ import { Car } from "../../../../cars/infra/typeorm/entities/Car";
 
 @Entity("rentals")
 class Rental {
-  @PrimaryColumn()
+  
+    @PrimaryColumn()
   id: string;
 
   @ManyToOne(() => Car)
