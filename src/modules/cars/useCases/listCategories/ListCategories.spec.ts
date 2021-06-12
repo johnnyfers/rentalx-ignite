@@ -1,4 +1,5 @@
 import { hash } from 'bcrypt'
+import { response } from 'express'
 import request from 'supertest'
 import { Connection } from 'typeorm'
 import {v4 as uuidV4} from 'uuid'
@@ -9,8 +10,9 @@ import createConnection from '../../../../shared/infra/typeorm/index'
 
 let connection: Connection
 
-describe('create category controller', () => {
-    
+
+describe('list Categories', ()=> {
+     
     beforeAll(async () => {
         connection = await createConnection()
         await connection.runMigrations()
@@ -29,14 +31,14 @@ describe('create category controller', () => {
         await connection.close()
     })
 
-    it('should be able to create a new category', async () => {
+    it('should be able list all categories', async () => {
         const resToken = await request(app).post('/sessions')
         .send({
             email: 'admin@rentalx.com',
             password: 'admin'
         })
 
-        const response = await request(app)
+        await request(app)
             .post('/categories')
             .send({
                 "name": "category supertest",
@@ -46,26 +48,9 @@ describe('create category controller', () => {
                 Authorization: `Bearer ${resToken.body.token}`
             })
 
-        expect(response.status).toBe(201)
-    })
+        const response  = await request(app).get('/categories')
 
-    it('should be able to create a new category with an existing name', async () => {
-        const resToken2 = await request(app).post('/sessions')
-        .send({
-            email: 'admin@rentalx.com',
-            password: 'admin'
-        })
+        expect(response.status).toBe(200)
 
-        const response2 = await request(app)
-            .post('/categories')
-            .send({
-                "name": "category supertest",
-                "description": "super test"
-            })
-            .set({
-                Authorization: `Bearer ${resToken2.body.token}`
-            })
-            
-        expect(response2.status).toBe(400)
     })
 })
