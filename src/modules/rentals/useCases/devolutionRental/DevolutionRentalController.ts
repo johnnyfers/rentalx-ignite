@@ -1,8 +1,20 @@
-
+import {Request, response, Response} from 'express'
+import { container } from 'tsyringe'
+import { DevolutionRentalUseCase } from './DevolutionRentalUseCase'
 
 class DevolutionRentalController {
-    async handle(req: Request, res: Response): Promise<void>{
-        
+    async handle(req: Request, res: Response): Promise<Response>{
+        const { id: user_id } = req.user
+        const { id } = req.params
+
+        const devoliuionRentalUseCase = container.resolve(DevolutionRentalUseCase)
+
+       const rental = devoliuionRentalUseCase.execute({
+            id,
+            user_id
+        })
+
+        return res.status(200).send(rental)
     }
 }
 
