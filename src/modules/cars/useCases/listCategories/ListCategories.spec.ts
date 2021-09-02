@@ -32,22 +32,6 @@ describe('list Categories', ()=> {
     })
 
     it('should be able list all categories', async () => {
-        const resToken = await request(app).post('/sessions')
-        .send({
-            email: 'admin@rentalx.com',
-            password: 'admin'
-        })
-
-        await request(app)
-            .post('/categories')
-            .send({
-                "name": "category supertest",
-                "description": "super test"
-            })
-            .set({
-                Authorization: `Bearer ${resToken.body.token}`
-            })
-
         const response  = await request(app).get('/categories')
 
         expect(response.status).toBe(200)

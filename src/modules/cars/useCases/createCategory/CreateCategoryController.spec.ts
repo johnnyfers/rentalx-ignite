@@ -66,6 +66,6 @@ describe('create category controller', () => {
                 Authorization: `Bearer ${resToken2.body.token}`
             })
             
-        expect(response2.status).toBe(401)
+        expect(response2.ok).toBe(false)
     })
 })
