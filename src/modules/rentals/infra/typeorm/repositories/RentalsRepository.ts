@@ -3,7 +3,6 @@ import { ICreateRentalDTO } from "../../../dtos/ICreateRentalDTO";
 import { IRentalsRepository } from "../../../repositories/IRentalsRepository";
 import { Rental } from "../entities/Rental";
 
-
 class RentalsRepository implements IRentalsRepository {
 
     private repository: Repository<Rental>
@@ -11,7 +10,16 @@ class RentalsRepository implements IRentalsRepository {
     constructor() {
         this.repository = getRepository(Rental)
     }
-    
+
+    async findByUser(user_id: string): Promise<Rental[]> {
+        const rentals = await this.repository.find({
+            where: { user_id },
+            relations: ['car']
+        })
+
+        return rentals
+    }
+
     async findById(id: string): Promise<Rental> {
         const rental = await this.repository.findOne(id)
 
@@ -20,18 +28,20 @@ class RentalsRepository implements IRentalsRepository {
 
     async findOpenRentalByCar(car_id: string): Promise<Rental> {
         const openByCar = await this.repository.findOne({
-            where: { car_id, end_date: null}
+            where: { car_id, end_date: null }
         })
 
         return openByCar
     }
+
     async findOpenRentalByUser(user_id: string): Promise<Rental> {
         const openByUser = await this.repository.findOne({
-            where: { user_id, end_date: null}
+            where: { user_id, end_date: null }
         })
-  
+
         return openByUser
     }
+    
     async create(data: ICreateRentalDTO): Promise<Rental> {
         const rental = this.repository.create({
             car_id: data.car_id,
