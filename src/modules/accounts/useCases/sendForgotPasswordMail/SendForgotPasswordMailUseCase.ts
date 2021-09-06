@@ -50,6 +50,6 @@ class SendForgotPasswordMailUseCase {
 
         await this.mailProvider.sendMail(email, 'Password Recovery', vars, templatePath)
     }
-}
+} 
 
 export { SendForgotPasswordMailUseCase }
