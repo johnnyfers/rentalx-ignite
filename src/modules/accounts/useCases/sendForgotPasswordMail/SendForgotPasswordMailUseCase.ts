@@ -2,8 +2,8 @@ import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../../shared/errors/AppError";
 import { IUserRepository } from "../../repositories/IUserRepository";
 import { IUsersTokensRepository } from "../../repositories/IUsersTokensRepository";
-
-import {v4 as uuidV4} from 'uuid'
+import { resolve } from 'path'
+import { v4 as uuidV4 } from 'uuid'
 import { IDateProvider } from "../../../../shared/container/providers/DateProvider/IDateProvider";
 import { IMailProvider } from "../../../../shared/container/providers/MailProvider/IMailProvider";
 
@@ -22,14 +22,16 @@ class SendForgotPasswordMailUseCase {
 
         @inject('EtherealMailProvider')
         private mailProvider: IMailProvider,
-    ){}
-    
-    async execute(email:  string): Promise<void> {
+    ) { }
+
+    async execute(email: string): Promise<void> {
         const user = await this.usersRepository.findByEmail(email);
 
-        if(!user){
+        const templatePath= resolve(__dirname, '..', '..', 'Views', 'emails', 'forgotPassword.hbs')
+
+        if (!user) {
             throw new AppError('User does not exists')
-        }   
+        }
 
         const token = uuidV4()
 
@@ -41,7 +43,12 @@ class SendForgotPasswordMailUseCase {
             expires_date
         })
 
-        await this.mailProvider.sendMail(email, 'Password Recovery', `Reset Link: ${token}`)
+        const vars = {
+            name: user.name,
+            link: `${process.env.FORGOT_MAIL_URL}${token}`
+        }
+
+        await this.mailProvider.sendMail(email, 'Password Recovery', vars, templatePath)
     }
 }
 
