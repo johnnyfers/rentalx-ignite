@@ -21,8 +21,8 @@ describe('list Categories', ()=> {
         const password = await hash('admin', 8)
 
         await connection.query(
-            `INSERT INTO USERS(id, name, email, password, "isAdmin", created_at, driver_license, username)
-            values('${id}', 'admin', 'admin@rentalx.com', '${password}', true, 'now()', '111dddd', 'rentalxUser' )`
+            `INSERT INTO USERS(id, name, username,  email, password, "isAdmin", created_at, driver_license, username)
+            values('${id}', 'admin', 'fogona', 'admin@rentalx.com', '${password}', true, 'now()', '111dddd', 'rentalxUser' )`
         )
     })
 
