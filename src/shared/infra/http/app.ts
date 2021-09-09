@@ -9,12 +9,17 @@ import '../typeorm'
 import '../../container'
 import { AppError } from '../../errors/AppError'
 import createConnection from '../typeorm/index'
+import Upload from '../../../config/Upload'
 
 createConnection()
 const app = express()
 app.use(express.json())
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
+
+app.use('/avatar', express.static(`${Upload.tmpFolder}/avatar`))
+app.use('/cars', express.static(`${Upload.tmpFolder}/avatar`))
+
 
 app.use(router)
 
