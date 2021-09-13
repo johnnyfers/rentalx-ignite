@@ -7,7 +7,7 @@ interface ICreateCategoryDTO {
 }
 
 interface ICreateCategoryRepository {
-    async create({ name, description }: ICreateCategoryDTO): Promise<void>;
+    create({ name, description }: ICreateCategoryDTO): Promise<void>;
     findByName(name:string): Promise<Category>;
     list(): Promise<Category[]>;
 }
