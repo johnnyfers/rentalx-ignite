@@ -20,7 +20,6 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.use('/avatar', express.static(`${Upload.tmpFolder}/avatar`))
 app.use('/cars', express.static(`${Upload.tmpFolder}/avatar`))
 
-
 app.use(router)
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
@@ -30,4 +29,4 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     return res.status(500).json({ status: 'error', message: `internal server error - ${err.message}` })
 })
 
-export {app}
+export { app }
