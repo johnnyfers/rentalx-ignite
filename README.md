@@ -1,102 +1,102 @@
 # rentalx-ignite
 
-# Diagrama
-<img src="./diagrama.png">
+# Diagram
+<img src="./diagram.png">
 
 
-# Cadastro de carro
-
-**RF**
-- Deve ser possível cadastrar um novo carro.
-
-
-**RN** 
-- Não deve ser possível cadastrar um carro com uma placa já existente.
-- O carro deve ser cadastrado, por padrão, com disponibilidade.
-- O usuário responsável pelo cadastro deve ser um usuário administrador.
-
-# Listagem de carros
-
-**RF** 
-- Deve ser possível listar todos os carros disponíveis
-- Deve ser possível listar todos os carros disponíveis pelo - nome da categoria
-- Deve ser possível listar todos os carros disponíveis pelo - nome da marca
-- Deve ser possível listar todos os carros disponíveis pelo - nome do carro
-
-**RN**
-- O usuário não precisar estar logado no sistema.
-
-
-# Cadastro de Especificação no carro
+# Car registration
 
 **RF**
-- Deve ser possível cadastrar uma especificação para um carro
+- It must be possible to register a new car.
 
 
 **RN**
-- Não deve ser possível cadastrar uma especificação para um - carro não cadastrado.
-- Não deve ser possível cadastrar uma especificação já - existente para o mesmo carro.
-- O usuário responsável pelo cadastro deve ser um usuário - administrador.
+- It must not be possible to register a car with an existing license plate.
+- The car must be registered, by default, with availability.
+- The user responsible for registration must be an administrator user.
 
-
-# Cadastro de imagens do carro
+# Car listing
 
 **RF**
-- Deve ser possível cadastrar a imagem do carro
+- It must be possible to list all available cars
+- It should be possible to list all available cars by - category name
+- It should be possible to list all available cars by - brand name
+- It should be possible to list all available cars by - car name
+
+**RN**
+- The user does not need to be logged into the system.
+
+
+# Registration of Specification on the car
+
+**RF**
+- It must be possible to register a specification for a car
+
+
+**RN**
+- It must not be possible to register a specification for an - unregistered car.
+- It must not be possible to register an existing specification for the same car.
+- The user responsible for the registration must be a user - administrator.
+
+
+# Registration of car images
+
+**RF**
+- It must be possible to register the car image
 
 **RNF**
-- Utilizar o multer para upload dos arquivos
+- Use multer to upload files
 
 **RN**
-- O usuário deve poder cadastrar mais de uma imagem para o - mesmo carro
-- O usuário responsável pelo cadastro deve ser um usuário - administrador.
+- The user must be able to register more than one image for the - same car
+- The user responsible for the registration must be a user - administrator.
 
 
-# Alugel de carro
+# Car rental
 
 **RF**
-- Deve ser possível cadastrar um aluguel
+- It must be possible to register a rental
 
 
 **RN**
-- O aluguel deve ter duração mínima de 24 horas.
-- Não deve ser possível cadastrar um novo aluguel caso já - exista um aberto para o mesmo usuário
-- Não deve ser possível cadastrar um novo aluguel caso já - exista um aberto para o mesmo carro
-- O usuário deve estar logado na aplicação
-- Ao realizar um aluguel, o status do carro deverá ser - alterado para indisponível
+- The rental must have a minimum duration of 24 hours.
+- It should not be possible to register a new rental if it already exists - there is one open for the same user
+- It should not be possible to register a new rental if it already exists - there is one open for the same car
+- The user must be logged in to the application
+- When renting, the status of the car must be - changed to unavailable
 
 
-# Devolução de carro 
+# Car return
 
 **RF**
-- Deve ser possível realizar a devolução de um carro
+- It must be possible to return a car
 
 **RN**
-- Se o carro for devolvido com menos de 24 horas, deverá - ser cobrado diária completa.
-- Ao realizar a devolução, o carro deverá ser liberado para - outro aluguel.
-- Ao realizar a devolução, o usuário deverá ser liberado - para outro aluguel.
-- Ao realizar a devolução, deverá ser calculado o total do - aluguel. 
-- Caso o horário de devolução seja superior ao horário - previsto de entrega, deverá ser cobrado multa - proporcional aos dias de atraso.
-- Caso haja multa, deverá ser somado ao total do aluguel.
-- O usuário deve estar logado na aplicação
+- If the car is returned with less than 24 hours, it must be - charged in full daily.
+- When returning, the car must be released for - another rental.
+- When returning, the user must be released - for another rental.
+- When returning, the total rent must be calculated.
+- If the return time is longer than the scheduled delivery time, a fine will be charged - proportional to the days of delay.
+- If there is a fine, it must be added to the total rent.
+- The user must be logged in to the application
 
 
-# Listagem de Alugueis para usuário
+# User Rental Listing
 
 **RF**
-- Deve ser possível realizar a busca de todos os alugueis para o usuário
+- It must be possible to search all rentals for the user
 
 **RN**
-- O usuário deve estar logado na aplicação
+- The user must be logged in to the application
 
 
-# Recuperar Senha
+# Recover Password
 
 **RF**
-- Deve ser possível o usuário recuperar a senha informando o e-mail
-- O usuário deve receber um e-mail com o passo a passo para a recuperação da senha
-- O usuário deve conseguir inserir uma nova senha
+- It must be possible for the user to recover the password by entering the email
+- The user should receive an email with the step-by-step password recovery
+- User must be able to enter a new password
 
 **RN**
-- O usuário precisa informar uma nova senha
-- O link enviado para a recuperação deve expirar em 3 horas
+- The user needs to enter a new password
+- The link sent for recovery must expire in 3 hours 
