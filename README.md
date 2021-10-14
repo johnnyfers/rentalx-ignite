@@ -1,7 +1,7 @@
 # rentalx-ignite
 
 # Diagram
-<img src="./diagram.png">
+<img src="./diagrama.png">
 
 
 # Car registration
